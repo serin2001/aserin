@@ -11,6 +11,6 @@ public class LibrarySystem {
 		l1.getName();
 		u1.getName();
 		l1.work();
-		u2.work();
+		//u2.work();
 	}
 }
