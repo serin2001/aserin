@@ -24,6 +24,6 @@ public class Mail {
 
 public String print(Mail m) {
 	
-	return m.subject + " from " m.sender + " on " + m.datetime + ": " + m.message;
+	return m.subject + " from " + m.sender + " on " + m.datetime + ": " + m.message;
 }
 }
