@@ -73,3 +73,16 @@ public class AnagramChecker {
 		printLetterCounts(word2);
 	}
 }
+
+/* In Java, the equals() method and the == operator are used to compare objects. 
+ * equals() method compares the content equality of two strings while the == operator compares the reference or memory location of objects in a heap, 
+ * whether they point to the same location or not.
+ * 
+ * Consider the following code snipplet and explain why this comparison returns true. 
+ * String string1 = "abc"; String string2 = "abc"; System.out.println ( string1 == string2 ); // true
+ * In this case, both ‘str1’ and ‘str2’ point to the same memory location because of string interning, where Java optimizes memory usage by reusing common string literals. 
+ * Thus, the ‘==’ operator returns true.
+ * 
+ * What happens if you create the second string using new String("abc") instead?
+ * String string1 = new String("abc"); String string2 = new String("abc"); System.out.println ( string1 == string2 ); // false (objects are identical but not same)
+ */
