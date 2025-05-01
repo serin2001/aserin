@@ -1,4 +1,4 @@
-package ex2;
+package ex22;
 
 public class LibrarySystem {
 	public static void main(String[] args) {
@@ -12,5 +12,8 @@ public class LibrarySystem {
 		u1.getName();
 		l1.work();
 		//u2.work();
+		/* Exception in thread "main" java.lang.Error: Unresolved compilation problem:
+		 * The method work() is undefined for the type User
+		 */
 	}
 }

@@ -1,4 +1,4 @@
-package ex2;
+package ex22;
 
 class User {
 	String name = "Unknown";
