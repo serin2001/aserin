@@ -1,4 +1,4 @@
-package ex3;
+package ex23;
 
 public class Mailbox {
 
