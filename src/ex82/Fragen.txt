@@ -1,0 +1,65 @@
+Using the wildcard `<? extends Shape>` in a method signature is important for several reasons:
+
+### 1. **Type Safety**
+   - `<? extends Shape>` allows the method to accept any subclass of `Shape`, ensuring that only objects that are compatible with `Shape` can be passed. This prevents runtime errors in case an incompatible type is passed.
+
+### 2. **Readability and Maintainability**
+   - `<? extends Shape>` indicates that the method is designed to work with any type that extends `Shape`, which can improve code readability and maintainability.
+
+### 3. **Avoiding Casting**
+   - Using a non-generic parameter may need to cast the objects to their specific types within the method, which can lead to `ClassCastException` at runtime. `<? extends Shape>` avoids unnecessary casting, as the compiler knows that the objects are of a subtype of `Shape`.
+
+### 4. **Covariance**
+   - One can use a more specific type in a context where a more general type is expected. This is particularly useful in collections, where you might want to retrieve elements of a specific type.
+
+Explain the design choice of using <T extends Shape> in groupByType instead of a wildcard. 	
+static <T extends Shape> Map<String, List<T>> groupByType(Collection<T> shapes) {
+		Map<String, List<T>> map = new HashMap<>();
+		Iterator<T> iterator = shapes.iterator();
+		while (iterator.hasNext()) {
+			T temp = iterator.next();
+	        if (!map.containsKey(temp.getClass().getSimpleName())) {
+	            map.put(temp.getClass().getSimpleName(), new ArrayList<T>());
+	        }
+			map.get(temp.getClass().getSimpleName()).add(temp);
+		}
+		return map;
+	}
+
+
+### 1. **Type Parameterization**
+   - The method can work with a specific type of `Shape` (or its subclasses) throughout its implementation. 
+
+### 2. **Consistency in Return Type**
+   - By using a type parameter `T`, the method guarantees that the lists in the returned map will contain elements of the same type `T`. This is important for maintaining type consistency, as it allows the caller to know exactly what type of objects they will receive when they retrieve lists from the map.
+
+### 3. **Avoiding Casting**
+   - When using a wildcard (e.g., `<? extends Shape>`), the elements retrieved from the collection would be of type `Shape`, and any specific type operations would require casting. By using `<T extends Shape>`, the method can directly work with the specific type `T`, eliminating the need for casting and reducing the risk of `ClassCastException`.
+
+### 4. **Enhanced Type Safety**
+   - The compiler can enforce that only objects of type `T` (or its subclasses) are added to the lists in the map. This prevents accidental addition of incompatible types, which could happen if a wildcard was used.
+
+### 5. **Clarity of Intent**
+   - `<T extends Shape>` makes the intent of the method clear: it is designed to group shapes of a specific type. This makes the method easier to understand and use.
+
+### 6. **Flexibility in Implementation**
+   - The method can be implemented in a way that takes full advantage of the specific type `T`. For example, if there are methods or properties specific to `T`, they can be used directly without any casting or type checks.
+
+
+Explain the design choice to make the methods in ShapeAnalyzer static 
+
+### 1. **Utility Class Functionality**
+   - By making the methods static, it emphasizes that these methods do not require an instance of `ShapeAnalyzer` to be invoked. 
+
+### 2. **Ease of Access**
+   - Static methods can be called directly using the class name, which makes them easy to access. For example, you can call `ShapeAnalyzer.filterByMinArea(shapes, minArea)` without needing to instantiate the `ShapeAnalyzer` class. This can lead to cleaner and more concise code, especially when the methods are used frequently.
+
+### 3. **Performance Considerations**
+   - Static methods can be slightly more efficient than instance methods because they do not require the overhead of object instantiation. This difference may be beneficial in applications where these methods are called frequently.
+
+### 4. **Encapsulation of Related Functionality**
+   - Grouping these static methods within the `ShapeAnalyzer` class encapsulates related functionality in a single location. This organization helps in maintaining the code and makes it easier for developers.
+
+### 5. **Clarity of Purpose**
+   - By using static methods, the design clearly communicates that these methods are intended for operations that do not modify the state of any object. This can help other developers understand the intended use of the class and its methods more quickly.
+
