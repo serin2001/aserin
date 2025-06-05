@@ -18,7 +18,7 @@ class Circle extends Shape {
 	}
 	@Override
 	public String toString() {
-		return "Kreis, R=" + radius;
+		return "Circle: radius=" + radius;
 	}
 }
 
@@ -35,7 +35,7 @@ class Rectangle extends Shape {
 	}
 	@Override
 	public String toString() {
-		return "Rechteck, B=" + width + ", L=" + length;
+		return "Rectangle: width=" + width + ", length=" + length;
 	}
 }
 
