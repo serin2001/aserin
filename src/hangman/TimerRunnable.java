@@ -2,8 +2,6 @@ package hangman;
 
 import javax.swing.SwingUtilities;
 
-import hangmanA3.HangmanGame;
-
 public class TimerRunnable implements Runnable {
 	private final Timer game;
 	public TimerRunnable(Timer game) {
