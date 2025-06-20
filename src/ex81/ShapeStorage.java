@@ -5,28 +5,22 @@ import java.util.ArrayList;
 public class ShapeStorage<T extends Shape> extends ArrayList<T> {
 	double getTotalArea() {
 		double sum = 0;
-		int n = 0;
-		while (n < size()) {
-			sum += this.get(n).getArea();
-			n++;
+		for (T shape : this) {
+			sum += shape.getArea();
 		}
 		return sum;
 	}
 
 	public void displayAllShapes() {
-		int n = 0;
-		while (n < size()) {
-			System.out.println(this.get(n).toString());
-			n++;
+		for (T shape : this) {
+			System.out.println(shape.toString());
 		}
 	}
 
-	<U extends T> void importLargeShapes(ShapeStorage<U> other, double minArea) {
-		int n = 0;
-		while (n < other.size()) {
-			if (other.get(n).getArea() >= minArea)
-				this.add(other.get(n));
-			n++;
+	public <U extends T> void importLargeShapes(ShapeStorage<U> other, double minArea) {
+		for (U shape : other) {
+			if (shape.getArea() >= minArea)
+				this.add(shape);
 		}
 	}
 }
