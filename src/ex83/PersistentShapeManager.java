@@ -20,12 +20,14 @@ public class PersistentShapeManager {
 		// Use try-with-resources to ensure the BufferedWriter is closed automatically
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
 			for (Shape s : shapes) {
-		//		System.out.println(s.toString());
+				// System.out.println(s.toString());
 				writer.write(s.toString()); // Write the string to the file
 				writer.newLine(); // Add a new line after each string
 			}
 		} catch (IOException e) {
-			e.printStackTrace(); // Handle the exception (e.g., log it or print it)
+			System.err.println("Error writing to file: " + e.getMessage());
+		} catch (Exception e) {
+			System.err.println("Unexpected error: " + e.getMessage());
 		}
 	}
 
@@ -39,19 +41,16 @@ public class PersistentShapeManager {
 		// Use try-with-resources to ensure the BufferedReader is closed automatically
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			String line;
-			ShapeFactory sf = new ShapeFactory();
-			while ((line = reader.readLine()) != null) {
-				try {
-					Shape s = sf.fromString(line); // Attempt to create a Shape
-					shapes.add(s); // Add valid Shape to the list
-				} catch (IllegalArgumentException e) {
-					// Log the malformed line
-					System.out.println(e.getMessage() + "Malformed line skipped: " + line);
-				}
-			}
 
+			while ((line = reader.readLine()) != null) {
+				shapes.add(ShapeFactory.fromString(line)); // Add valid Shape to the list
+			}
 		} catch (IOException e) {
-			e.printStackTrace(); // Handle the exception (e.g., log it or print it)
+			System.err.println("Error reading from file: " + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.err.println("Error parsing shape: " + e.getMessage());
+		} catch (Exception e) {
+			System.err.println("Unexpected error: " + e.getMessage());
 		}
 		return shapes;
 	}
@@ -65,7 +64,9 @@ public class PersistentShapeManager {
 		try (FileWriter writer = new FileWriter(filename, false)) { // false to overwrite
 			// No need to write anything to make the file empty
 		} catch (IOException e) {
-			e.printStackTrace(); // Handle the exception (e.g., log it or print it)
+			System.err.println("Error clearing file: " + e.getMessage());
+		} catch (Exception e) {
+			System.err.println("Unexpected error: " + e.getMessage());
 		}
 	}
 }

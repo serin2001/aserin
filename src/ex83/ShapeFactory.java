@@ -2,26 +2,31 @@ package ex83;
 
 public class ShapeFactory {
 	public static Shape fromString(String input) {
-		if (input.contains("Circle:") && input.contains("radius=")){
-			double radius = Double.parseDouble(input.substring(input.indexOf("radius=") + 7));
+		input = input.replaceAll("\\s+", "");
+		input = input.replaceAll(":", ",");
+		input = input.toLowerCase();
+		
+		String[] parts = input.split(",");
+		
+		if (parts[0].equalsIgnoreCase("circle") && parts[1].startsWith("radius=") && parts.length == 2){
+			String rad = parts[1].replaceAll("[^0-9.]", "");
+			
+			if (rad.isEmpty())
+				throw new IllegalArgumentException("Invalid radius value: " + parts[1]);
+			
+			double radius = Double.parseDouble(rad);
 			return new Circle(radius);
-		} else if (input.contains("Rectangle:") && input.contains("width=") && input.contains("length=")) {
-			int widthStartIndex = input.indexOf("width=") + 6; // 6 is the length of "width="
-            int widthEndIndex = input.indexOf(',', widthStartIndex); // Find the next ',' after width
-            double width;
-            if (widthStartIndex < widthEndIndex) { // Ensure that the start index is before the end index
-                String widthString = input.substring(widthStartIndex, widthEndIndex);
-                width = Double.parseDouble(widthString);
-            } else {
-                throw new IllegalArgumentException("Invalid input format for width");
-            }
-
-            int lengthStartIndex = input.indexOf("length=") + 7; // 7 is the length of "length="
-            String lengthString = input.substring(lengthStartIndex); // Get the rest of the string
-            double length = Double.parseDouble(lengthString);
+		} 
+		if (parts[0].equalsIgnoreCase("rectangle") && parts[2].startsWith("length=") && parts[1].startsWith("width=") && parts.length == 3){
+			String wid = parts[1].replaceAll("[^0-9.]", "");
+			String len = parts[2].replaceAll("[^0-9.]", "");
+			
+			if (len.isEmpty() || wid.isEmpty())
+				throw new IllegalArgumentException("Invalid width: " + wid + " or length: " + len);            
+			double width = Double.parseDouble(wid);
+            double length = Double.parseDouble(len);
             return new Rectangle(width, length);
-        } else {
-            throw new IllegalArgumentException("Invalid input");
         }
+		throw new IllegalArgumentException("Invalid input: " + input);
 	}
 }
