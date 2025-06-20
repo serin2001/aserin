@@ -10,40 +10,49 @@ import java.util.HashMap;
 public class ShapeAnalyzer {
 	static List<Shape> filterByMinArea(Collection<? extends Shape> shapes, double minArea) {
 		List<Shape> list = new ArrayList<>();
-		Iterator<? extends Shape> iterator = shapes.iterator();
-		while (iterator.hasNext()) {
-			Shape temp = iterator.next();
-			if (temp.getArea() >= minArea) {
-				list.add(temp);
+
+		for (Shape s : shapes) {
+			if (s.getArea() >= minArea) {
+				list.add(s);
 			}
 		}
 		return list;
 	}
 
-	static Shape findShapeWithMaxArea(Collection<? extends Shape> shapes) {
-		Shape shape = new Circle(1);
-		double area = 0;
-		Iterator<? extends Shape> iterator = shapes.iterator();
-		while (iterator.hasNext()) {
-			Shape temp = iterator.next();
-			if (temp.getArea() > area) {
-				shape = temp;
-				area = temp.getArea();
+	public static Shape findShapeWithMaxArea(Collection<? extends Shape> shapes) {
+		if (shapes == null || shapes.isEmpty()) {
+			return null;
+		}
+		Shape shape = null;
+		double area = Double.NEGATIVE_INFINITY;
+
+		for (Shape s : shapes) {
+			if (s.getArea() > area) {
+				shape = s;
+				area = s.getArea();
 			}
 		}
 		return shape;
 	}
 
-	static <T extends Shape> Map<String, List<T>> groupByType(Collection<T> shapes) {
+	public static <T extends Shape> Map<String, List<T>> groupByType(Collection<T> shapes) {
 		Map<String, List<T>> map = new HashMap<>();
-		Iterator<T> iterator = shapes.iterator();
-		while (iterator.hasNext()) {
-			T temp = iterator.next();
-	        if (!map.containsKey(temp.getClass().getSimpleName())) {
-	            map.put(temp.getClass().getSimpleName(), new ArrayList<T>());
-	        }
-			map.get(temp.getClass().getSimpleName()).add(temp);
+
+		for (T temp : shapes) {
+			String name = temp.getClass().getSimpleName();
+			map.computeIfAbsent(name, k -> new ArrayList<>()).add(temp);
 		}
 		return map;
 	}
 }
+/*
+ * 1) Java generics are invariant -> Collection<Circle> is not a subtype of
+ * Collection<Shape>. With <? extends Shape> the method accepts any subtype
+ * while still safely reading elements as Shape
+ * 
+ * 2) Using <T extends Shape> preserves the type of the elements inside the
+ * resulting Map<String, List<T>>
+ * 
+ * 3) ShapeAnalyzer is a utility class that performs operations on Collections.
+ * Methods operate purely on input, there are no variables.
+ */
