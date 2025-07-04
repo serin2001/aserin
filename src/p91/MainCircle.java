@@ -7,12 +7,14 @@ public class MainCircle {
 		Circle surface = (radius) -> radius > 0 ? Math.PI * radius * radius : 0;
 		Circle circumference = (radius) -> radius > 0 ? Math.PI * 2 * radius : 0;
 		
-		double rad = 5;
+		double[] radii = {5, 2.5, -3};
 		
-		System.out.println("Diameter: " + diameter.calc(rad));
-		System.out.println("Surface: " + surface.calc(rad));
-		System.out.println("Circumference: " + circumference.calc(rad));
-		System.out.println(Circle.validRadius(rad));
+		for (double rad : radii) {
+			System.out.println("Diameter: " + diameter.calc(rad));
+			System.out.println("Surface: " + surface.calc(rad));
+			System.out.println("Circumference: " + circumference.calc(rad));
+			System.out.println(Circle.validRadius(rad));
+		}
 	}
 }
 /*
