@@ -17,7 +17,8 @@ class Librarian extends User {
 
 	@Override
 	public String getRole() {
-		return this.name + "Librarian";
+		//return this.name + "Librarian";
+		return super.getName() + " Librarian";
 
 	}
 
