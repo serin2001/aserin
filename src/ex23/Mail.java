@@ -1,6 +1,7 @@
 package ex23;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Mail {
 	private String sender;
@@ -61,7 +62,9 @@ public class Mail {
 		m.setRead(true);
 	}
 
-public String print(Mail m) {
-	return m.getSubject() + " from " + m.getSender() + " on " + m.getDatetime() + ": " + m.getMessage();
-}
+	public String print() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+		return getSubject() + " from " + getSender() + " on " + getDatetime().format(formatter) + ": "
+				+ getMessage();
+	}
 }

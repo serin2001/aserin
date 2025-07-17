@@ -19,8 +19,8 @@ public class Mailbox {
 		System.out.println("Ungelese Mails: " + inbox.countUnread());
 		
 		inbox.print();
-		
-		
+		//Call m1.print()
+		System.out.println(m1.print());
 
 	}
 
