@@ -58,8 +58,8 @@ public class Mail {
 		this.datetime = LocalDateTime.now();
 	}
 
-	public void markAsRead(Mail m) {
-		m.setRead(true);
+	public void markAsRead() {
+		setRead(true);
 	}
 
 	public String print() {

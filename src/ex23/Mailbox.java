@@ -11,9 +11,9 @@ public class Mailbox {
 		Inbox inbox = new Inbox();
 
 		inbox.add(m1);inbox.add(m2);inbox.add(m3);inbox.add(m4);inbox.add(m5);
-		//m1.markAsRead(m1);
-		m4.markAsRead(m4);
-		m5.markAsRead(m5);
+		//m1.markAsRead();
+		m4.markAsRead();
+		m5.markAsRead();
 		
 		inbox.open(0);
 		System.out.println("Ungelese Mails: " + inbox.countUnread());
