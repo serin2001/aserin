@@ -61,5 +61,6 @@ public class PizzaDeluxe {
 			System.out.println("Deluxe mode unlocked! ");
 		if(total > 4)
 			System.out.println("High roller! ");
+		scanner.close();
 	}
 }
