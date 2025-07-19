@@ -50,8 +50,7 @@ public class WrapperTask {
 }
 /*
  * Autoboxing is the automatic conversion of a primitive type into its
- * corresponding wrapper class. This occurs when a primitive type is assigned to
- * a variable of its wrapper class type. Autoboxing allows you to use primitive
+ * corresponding wrapper class. Autoboxing allows you to use primitive
  * values where objects are expected, such as in Collections (like ArrayList).
  * 
  * Unboxing is the automatic conversion of a wrapper class object back into its
@@ -62,14 +61,18 @@ public class WrapperTask {
  * ArrayList, HashMap, etc.), which can only store objects. Autoboxing
  * automatically converts primitive types to their wrapper class when adding
  * elements. 2) Passing a primitive value to a method that expects an object.
- * For example, calling a method that requires an Integer object and passing a
- * primitive int will trigger autoboxing.
  * 
  * Use Cases: Unboxing: 1) Performing arithmetic operations with wrapper
- * classes. When you need to perform operations like addition or subtraction
- * with a wrapper class (e.g. Integer), unboxing automatically converts the
- * wrapper class object to its primitive type to perform the operation. 2)
- * Retrieving values from collections that store wrapper classes. When you
- * retrieve an Integer from an ArrayList and need to use it in a computation,
+ * classes. 2) Retrieving values from collections that store wrapper classes. 
+ * When you retrieve an Integer from an ArrayList and need to use it in a computation,
  * unboxing converts it to an int for the operation.
+ * 
+ * List<Integer> integerList = new ArrayList<>();
+ * integerList.add(5); // Autoboxing occurs here
+ * integerList.add(10); // Autoboxing occurs here
+ * 
+ * int sum = 0;
+ * for (Integer num : integerList) {
+ *     sum += num; // Unboxing occurs here
+ * }
  */
