@@ -22,6 +22,10 @@ public class Main {
  * Liskov Substitution Principle (LSP): Any class implementing PaymentProvider
  * can be used by CheckoutService without affecting its correctness.
  * 
+ * Interface Segregation Principle (ISP): The PaymentProvider interface is focused 
+ * and does not force implementations to include methods that are not relevant to them. 
+ * Each payment method only needs to implement the pay(double amount) method.
+ * 
  * Dependency Inversion Principle (DIP): CheckoutService depends on the
  * PaymentProvider abstraction, not on specific implementations
  * 
