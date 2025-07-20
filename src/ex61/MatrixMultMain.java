@@ -50,13 +50,16 @@ public class MatrixMultMain {
 				 * CPU cores, significantly reducing the overall computation time. 
 				 */
 				// t.run();
-				t.start();
-				try {
-					t.join(); // Wait for the thread to finish
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				result[i][j] = t.getDot();
+	            t.start();
+	            try {
+	                t.join(); // Wait for the thread to finish
+	                result[i][j] = t.getDot();
+	            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            } catch (IllegalArgumentException e) {
+	                System.out.println("Error in thread execution: " + e.getMessage());
+	                result[i][j] = 0; // or some other error indication
+	            }
 			}
 		}
 		return result;
