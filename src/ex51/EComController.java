@@ -18,6 +18,13 @@ public class EComController {
 		 * instead of the following line
 		 */
 		System.out.println("Shipping to: " + customer.getProfile().getShippingInfo().getCity());
+		/* 
+		 * Law of Demeter states that a method should only call methods of: 
+		 * The object itself.
+		 * Objects passed as arguments to the method.
+		 * Objects created within the method.
+		 * Directly held member objects (e.g. ShippingInfo in a Profile object).
+		 */
 	}
 }
 /*
