@@ -7,14 +7,14 @@ public class Calculator2 {
 
 	public static void main(String[] args) {
 		try {
-			System.out.println(Calculator.divide(3, 0)); // This will trigger the exception
+			System.out.println(Calculator2.divide(3, 0)); // This will trigger the exception
 		} catch (ArithmeticException e) {
 			System.out.println("Error: Division by zero is not allowed.");
 		}
 
 		// Example of a valid division
 		try {
-			System.out.println(Calculator.divide(3, 2)); // This will work normally
+			System.out.println(Calculator2.divide(3, 2)); // This will work normally
 		} catch (ArithmeticException e) {
 			System.out.println("Error: Division by zero is not allowed.");
 		}

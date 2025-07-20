@@ -27,11 +27,10 @@ public class Calculator {
  * meaningful way (e.g., retrying an operation), it may make sense to catch the
  * exception and handle it internally.
  * 
- * public class StringUtils { // A utility method to parse an int from a string
  * public static int parseInt(String str) { 
  * try { 
  * return Integer.parseInt(str);
  * } catch (NumberFormatException e) {
  * System.out.println("Invalid number format. Returning 0."); return 0; //
- * Return a default value } } }
+ * Return a default value } } 
  */
