@@ -11,7 +11,7 @@ public class TimerRunnable implements Runnable {
 
     @Override
     public void run() {
-		while (game.timeLeft > 0) {
+		while (game.timeLeft > 0) { 
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
