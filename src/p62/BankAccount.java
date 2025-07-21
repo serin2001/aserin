@@ -24,9 +24,13 @@ public class BankAccount {
  * Each thread performs a series of deposits and withdrawals.
  * 
  * A race condition occurs in a concurrent system when two or more threads
- * access shared data and try to change it at the same time. If the threads are
- * not properly synchronized, the final outcome can depend on the timing of
- * their execution, leading to unpredictable and incorrect results.
+ * access shared data and try to change it at the same time. To demonstrate a
+ * race condition, the BankAccount class should use non-synchronized deposit(),
+ * withdraw(), and getBalance() methods. This will allow multiple threads to
+ * access and modify the balance concurrently without any synchronization,
+ * leading to potential inconsistencies in the final balance. The final outcome
+ * depends on the timing of their execution, leading to unpredictable and
+ * incorrect results.
  * 
  * The methods deposit, withdraw, and getBalance are synchronized, which means
  * that only one thread can execute any of these methods at a time.
