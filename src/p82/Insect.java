@@ -10,10 +10,10 @@ public class Insect {
 	}
 
 	public int getNumLegs() {
-		return getNumLegs();
+		return numLegs;
 	}
 
 	public String getName() {
-		return name();
+		return name;
 	}
 }
