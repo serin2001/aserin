@@ -49,6 +49,10 @@ def main():
     # d) Inheritance and abstractions
     circle = Circle(5)
     print(f"Area of the circle with radius {circle.radius}: {circle.get_area()}")
+    
+    # c) for loop printing 0 .. 9
+    for counter in range(10):
+    	print(counter)
 
 if __name__ == "__main__":
     main()
