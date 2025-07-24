@@ -1,10 +1,11 @@
-class Mail:
-	
-	def __init__(self, sender, subject, message, date):
+from datetime import datetime
+
+class Mail:	
+	def __init__(self, sender, subject, message, date=None):
 		self.sender = sender
 		self.subject = subject
 		self.message = message
-		self.date = date
+		self.datetime = date if date else datetime.now()
 		self.read = False
 
 	def mark_as_read(self):
@@ -12,10 +13,10 @@ class Mail:
 		
 	def get_header(self):
 		status = "READ" if self.read else "UNREAD"
-		return f"{status} | {self.subject} | {self.sender} | {self.date}"
+		return f"{status} | {self.subject} | {self.sender} | {self.datetime.strftime('%Y-%m-%d %H:%M')}" 
 		
-	def formatted(self):
-		return self.subject + " from " + self.sender + " on " + self.date + ": " + self.message
+	def print_mail(self):
+		print(f"{self.subject} from {self.sender} on {self.datetime.strftime('%Y-%m-%d %H:%M')}: {self.message}")
 
 class Inbox:
 	def __init__(self):
@@ -25,25 +26,28 @@ class Inbox:
 		self.mails.append(mail)
 		
 	def print_headers(self):
+		if not self.mails:
+			print("Inbox is empty.")
+			return
 		for i, mail in enumerate(self.mails):
-			status = "Read" if mail.read else "Unread"
-			print(str(i) + ": " + mail.get_header())
+#			status = "Read" if mail.read else "Unread"
+			print(f"{i}: {mail.get_header()}")
 			
 	def open(self, index):
-		if index < 0 or index >= len(self.mails):
+		if 0 <= index < len(self.mails):
+			mail = self.mails[index]
+			mail.mark_as_read()
+			mail.print_mail()
+		else:
 			print("Invalid index. No such e-mail.")
-			return
-		mail = self.mails[index]
-		mail.mark_as_read()
-		print(mail.formatted())
 	
 	def count_unread(self):
-		return sum(1 for mail in self.mails if not mail.read)
+		return sum(not mail.read for mail in self.mails)
 		
 if __name__ == "__main__":
 	inbox = Inbox()
-	inbox.add_mail(Mail("anisa@icloud.com", "Meeting", "Let's meet at 10 AM tomorrow.", "10-05-2025 10:10"))
-	inbox.add_mail(Mail("tom@outlook.de", "Project Update", "Project is due Monday!", "15-06-2025 09:30"))
+	inbox.add_mail(Mail("anisa@icloud.com", "Meeting", "Let's meet at 10 AM tomorrow."))
+	inbox.add_mail(Mail("tom@outlook.de", "Project Update", "Project is due Monday!"))
 	
 	print("Inbox headers:")
 	inbox.print_headers()
