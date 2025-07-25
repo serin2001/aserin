@@ -12,9 +12,11 @@ def safe_divide():
         result = numerator / denominator
         print(f"The result of {numerator} divided by {denominator} is: {result}")
 
-    except ValueError:
+    except ValueError as e:
+        print(f"Error: {e}")
         print("Error: Please enter numeric values only.")
-    except ZeroDivisionError:
+    except ZeroDivisionError as e:
+        print(f"Error: {e}")
         print("Error: The denominator cannot be zero.")
 
 while True:
