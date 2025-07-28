@@ -16,5 +16,6 @@ public class SnakeLanguage {
 			}
 		}
 		System.out.println("Snake language: " + result);
+		scanner.close();
 	}
 }
