@@ -25,7 +25,8 @@ public class MatrixMultMain {
 		int[][] result = new int[A.length][B[0].length];
 		for (int i = 0; i < A.length; i++) {
 			for (int j = 0; j < bTransp.length; j++) {
-				DotProductThread t = new DotProductThread(A[i], bTransp[j]);
+				try {
+					DotProductThread t = new DotProductThread(A[i], bTransp[j]);
 				/*
 				 * The start() method is the correct way to initiate a new thread in Java. When
 				 * you call start(), it creates a new thread of execution and invokes the run()
@@ -50,8 +51,8 @@ public class MatrixMultMain {
 				 * CPU cores, significantly reducing the overall computation time. 
 				 */
 				// t.run();
-	            t.start();
-	            try {
+				
+					t.start();
 	                t.join(); // Wait for the thread to finish
 	                result[i][j] = t.getDot();
 	            } catch (InterruptedException e) {
