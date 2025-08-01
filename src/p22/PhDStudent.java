@@ -1,7 +1,5 @@
 package p22;
 
-import java.util.Arrays;
-
 public class PhDStudent extends Student {
 	private String dissTopic;
 	

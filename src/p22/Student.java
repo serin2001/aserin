@@ -2,7 +2,6 @@ package p22;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Student extends Person {
 	protected List<String> courses;
