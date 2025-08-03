@@ -29,7 +29,10 @@ public abstract class GameGUI extends JFrame {
 		inputField.setHorizontalAlignment(JTextField.CENTER);
 		inputField.setEnabled(false);
 		add(inputField);
-		startButton.addActionListener(e -> startGame());
+		startButton.addActionListener(e -> {
+			startGame();
+			startButton.setEnabled(false);
+		});
 		processInput();
 
 		setVisible(true);
@@ -73,7 +76,7 @@ public abstract class GameGUI extends JFrame {
 	}
 
 	protected abstract void startTimer();
-	
+
 	protected abstract void handleGuess(char guess);
 
 	protected abstract boolean hasWon();
