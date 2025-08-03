@@ -1,7 +1,7 @@
 package ex83;
 
 public class ShapeFactory {
-	public static Shape fromString(String input) {
+	public static Shape fromString(String input) throws IllegalArgumentException {
 		input = input.replaceAll("\\s+", "");
 		input = input.replaceAll(":", ",");
 		input = input.toLowerCase();
