@@ -7,6 +7,7 @@ public class Timer extends Game {
 	@Override
 	protected void startGame() {
 		super.startGame();
+		updateDisplay();
 		startTimer();
 	}
 

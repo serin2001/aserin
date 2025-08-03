@@ -55,7 +55,7 @@ public class Game extends JFrame {
 		guessedLetters.clear();
 		attemptsLeft = 6;
 		timeLeft = 60;
-		updateDisplay();
+//		updateDisplay();
 		inputField.setEnabled(true);
 		inputField.requestFocus();
 	}
