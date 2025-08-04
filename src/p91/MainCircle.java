@@ -10,9 +10,9 @@ public class MainCircle {
 		double[] radii = {5, 2.5, -3};
 		
 		for (double rad : radii) {
-			System.out.println("Diameter: " + diameter.calc(rad));
-			System.out.println("Surface: " + surface.calc(rad));
-			System.out.println("Circumference: " + circumference.calc(rad));
+			System.out.println("Diameter: " + diameter.calculate(rad));
+			System.out.println("Surface: " + surface.calculate(rad));
+			System.out.println("Circumference: " + circumference.calculate(rad));
 			System.out.println(Circle.validRadius(rad));
 		}
 	}
